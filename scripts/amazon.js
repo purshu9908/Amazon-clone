@@ -1,5 +1,6 @@
 import { products } from "../data/products.js";
 import { cart, addToCart } from "../data/cart.js";
+import { moneyCalculator } from "./money.js";
 let productsHTML = "";
 products.forEach((product) => {
   productsHTML += `
@@ -11,7 +12,7 @@ products.forEach((product) => {
                 <span>${product.rating.count}</span>
             </div>
 
-            <b>$${product.priceCents / 100}</b>
+            <b>$${moneyCalculator(product.priceCents)}</b>
             <select class="js-quantity-selector-${product.id}">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -32,9 +33,21 @@ products.forEach((product) => {
         </div>
     `;
 });
+let timeout;
 document.querySelector(".amazon-main").innerHTML = productsHTML;
 document.querySelectorAll(".js-add-to-cart").forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
+    event.target.previousElementSibling.classList.add(
+      "added-to-cart-msg-visible",
+    );
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      event.target.previousElementSibling.classList.remove(
+        "added-to-cart-msg-visible",
+      );
+    }, 2000);
     addToCart(button.dataset.productId);
   });
 });

@@ -49,6 +49,10 @@
   color: green;
   font-weight: bold;
   margin-bottom: 6px;
+  transition: opacity 0.25s;
+}
+.added-to-cart-msg-visible {
+  opacity: 1;
 }
 .added-to-cart-msg img {
   width: 20px;
