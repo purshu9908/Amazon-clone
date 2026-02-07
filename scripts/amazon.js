@@ -1,4 +1,5 @@
 import { products } from "../data/products.js";
+import { cart, addToCart } from "../data/cart.js";
 let productsHTML = "";
 products.forEach((product) => {
   productsHTML += `
@@ -11,7 +12,7 @@ products.forEach((product) => {
             </div>
 
             <b>$${product.priceCents / 100}</b>
-            <select id="">
+            <select class="js-quantity-selector-${product.id}">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -27,8 +28,13 @@ products.forEach((product) => {
                 <img src="images/icons/checkmark.png">
                 Added
             </div>
-            <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-cart js-add-to-cart" data-product-id="${product.id}">Add to Cart</button>
         </div>
     `;
 });
 document.querySelector(".amazon-main").innerHTML = productsHTML;
+document.querySelectorAll(".js-add-to-cart").forEach((button) => {
+  button.addEventListener("click", () => {
+    addToCart(button.dataset.productId);
+  });
+});

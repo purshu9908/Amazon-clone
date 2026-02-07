@@ -70,5 +70,6 @@ body {
   color: rgb(240, 136, 4);
   position: absolute;
   font-weight: bold;
+  font-style: 12px;
   left: 25px;
 }
