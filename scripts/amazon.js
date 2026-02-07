@@ -1,0 +1,34 @@
+import { products } from "../data/products.js";
+let productsHTML = "";
+products.forEach((product) => {
+  productsHTML += `
+    <div class="product">
+            <div class="image-container"><img src=${product.image} class="product-image"></div>
+            <p>${product.name}</p>
+            <div>
+                <img src="../images/ratings/rating-${product.rating.stars * 10}.png" class="ratings-image" alt="">
+                <span>${product.rating.count}</span>
+            </div>
+
+            <b>$${product.priceCents / 100}</b>
+            <select id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <div class="added-to-cart-msg">
+                <img src="images/icons/checkmark.png">
+                Added
+            </div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    `;
+});
+document.querySelector(".amazon-main").innerHTML = productsHTML;

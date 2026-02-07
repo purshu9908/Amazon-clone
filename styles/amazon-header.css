@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 0;
+  margin: 0;
+  font-family: roboto, arial, sans-serif;
+}
+.amazon-header {
+  display: flex;
+  background-color: black;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.amazon-header .section-1 {
+  width: 15%;
+}
+.section-1 img {
+  width: 100px;
+  margin-left: 14px;
+  margin-top: 6px;
+}
+.section-2 {
+  width: 60%;
+  display: flex;
+}
+.section-2 input {
+  width: 90%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1em;
+  border: none;
+}
+.section-2 img {
+  margin-top: 3px;
+  width: 22px;
+}
+.section-2 button {
+  background-color: rgb(254, 189, 105);
+  margin-left: -4px;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 0px 10px;
+  height: 40px;
+}
+.section-3 {
+  display: flex;
+  justify-content: space-evenly;
+  width: 10%;
+}
+.section-3 img {
+  width: 50px;
+}
+.section-3 a {
+  text-decoration: none;
+  color: white;
+}
+.section-3 .cart-icon-text {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+}
+.section-3 .cart-count {
+  color: rgb(240, 136, 4);
+  position: absolute;
+  font-weight: bold;
+  left: 25px;
+}
