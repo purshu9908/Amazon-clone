@@ -65,3 +65,10 @@
   box-shadow: 0 0 3px rgba(213, 217, 217, 0.7);
   border-radius: 5px;
 }
+.go-to-homepage {
+  text-decoration: none;
+  color: black;
+  padding: 10px 14px;
+  background-color: rgb(255, 216, 20);
+  border-radius: 8px;
+}

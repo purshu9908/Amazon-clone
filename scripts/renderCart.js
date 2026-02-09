@@ -16,7 +16,7 @@ export function renderCart() {
       let matchingProduct = getProduct(cartItem.id);
       cartSummaryHTML += `
     <div class="cart-item">
-        <div class="delivery-date delivery-date-${matchingProduct.id}">Delivery Date: Tuesday, February 17</div>
+        <div class="delivery-date delivery-date-${matchingProduct.id}">Delivery Date: ${getDeliveryDate(cartItem.deliveryOptionId)}</div>
         <div>
             <div class="cart-product">
                 <img src="${matchingProduct.image}" class="cart-img">

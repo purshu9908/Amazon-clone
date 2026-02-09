@@ -1,12 +1,21 @@
 export let cart = JSON.parse(localStorage.getItem("Cart")) || [];
 
-export function addToCart(productId) {
+export function addToCart(productId, quantityFromOrder = null) {
   let matchingProduct = cart.find((product) => {
     return product.id === productId;
   });
-  let quantity = Number(
-    document.querySelector(`.js-quantity-selector-${productId}`).value,
+  let quantity;
+  const quantitySelector = document.querySelector(
+    `.js-quantity-selector-${productId}`,
   );
+  if (quantitySelector) {
+    quantity = Number(quantitySelector.value);
+    if (!quantity || quantity < 1) return;
+  } else if (quantityFromOrder) {
+    quantity = quantityFromOrder;
+  } else {
+    return;
+  }
   if (matchingProduct) {
     matchingProduct.quantity += quantity;
   } else {
