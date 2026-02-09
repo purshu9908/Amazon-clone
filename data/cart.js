@@ -1,5 +1,5 @@
-export const cart = JSON.parse(localStorage.getItem("Cart")) || [];
-updateCartNumber();
+export let cart = JSON.parse(localStorage.getItem("Cart")) || [];
+
 export function addToCart(productId) {
   let matchingProduct = cart.find((product) => {
     return product.id === productId;
@@ -13,6 +13,7 @@ export function addToCart(productId) {
     cart.push({
       id: productId,
       quantity: quantity,
+      deliveryOptionId: "1",
     });
   }
   updateCartNumber();
@@ -22,9 +23,29 @@ function saveToStorage() {
   localStorage.setItem("Cart", JSON.stringify(cart));
   console.log(JSON.parse(localStorage.getItem("Cart")));
 }
-function updateCartNumber() {
+export function updateCartNumber() {
   let cartCount = cart.reduce((count, cartItem) => {
     return count + cartItem.quantity;
   }, 0);
-  document.querySelector(".js-cart-count").innerText = cartCount;
+  const cartElement = document.querySelector(".js-cart-count");
+  if (cartElement) {
+    cartElement.innerText = cartCount;
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.querySelector(".js-cart-count")) {
+    updateCartNumber();
+  }
+});
+export function updateCartItemQuantity(productId, newQuantity) {
+  if (newQuantity < 1) return;
+  const cartItem = cart.find((item) => item.id === productId);
+  console.log(cartItem);
+  cartItem.quantity = newQuantity;
+  saveToStorage();
+}
+export function removeFromCart(productId) {
+  const cartItemIndex = cart.findIndex((item) => item.id === productId);
+  cart.splice(cartItemIndex, 1);
+  saveToStorage();
 }
