@@ -2,13 +2,12 @@ import { cart } from "../data/cart.js";
 import { getProduct } from "../data/products.js";
 import { getDeliveryOption } from "./deliveryOptions.js";
 import { moneyCalculator } from "./money.js";
-
+export let orderTotal = 0;
 export function renderPaymentSummary() {
   let itemsCost = 0,
     shippingCost = 0,
     totalBeforeTax = 0,
-    estimatedTax = 0,
-    orderTotal = 0;
+    estimatedTax = 0;
   cart.forEach((cartItem) => {
     const product = getProduct(cartItem.id);
     itemsCost += product.priceCents * cartItem.quantity;

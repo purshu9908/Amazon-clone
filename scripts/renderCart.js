@@ -1,7 +1,8 @@
 import { cart, removeFromCart, updateCartItemQuantity } from "../data/cart.js";
 import { getProduct } from "../data/products.js";
 import { updateDeliveryOptions, getDeliveryDate } from "./deliveryOptions.js";
-import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderPaymentSummary, orderTotal } from "./paymentSummary.js";
+import { addOrder } from "../data/orders.js";
 import { moneyCalculator } from "./money.js";
 export function renderCart() {
   let cartSummaryHTML = "";
@@ -22,28 +23,28 @@ export function renderCart() {
                 <div class="cart-product-details">
                     <div>${matchingProduct.name}</div>
                     <div class="price">$${moneyCalculator(matchingProduct.priceCents)}</div>
-                    <div>Quantity: <span class="quantity">${cartItem.quantity}</span> <a href="#" class="modify-cart update-link">Update</a><span class="save-quantity" data-product-id="${matchingProduct.id}"><input type="number"><a href="#" class="modify-cart save-item-quantity">Save</a></span>
+                    <div>Quantity: <span class="quantity">${cartItem.quantity}</span> <a href="#" class="modify-cart update-link">Update</a><span class="save-quantity" ><input type="number"><a href="#" class="modify-cart save-item-quantity" data-product-id="${matchingProduct.id}">Save</a></span>
                         <a href="#" class="modify-cart delete-link" data-product-id="${matchingProduct.id}">Delete</a>
                     </div>
                 </div>
                 <div>
                     <div>Choose a delivery option</div>
                     <div class="delivery-options">
-                        <input type="radio" data-delivery-option-id="1" name="delivery-date-radio-${matchingProduct.id}"data-product-id="${matchingProduct.id}" ${cartItem.deliveryOptionId === "1" ? "checked" : ""} >
+                        <input type="radio" data-delivery-option-id="1" name="delivery-date-radio-${matchingProduct.id}" data-product-id="${matchingProduct.id}" ${cartItem.deliveryOptionId === "1" ? "checked" : ""} >
                         <div>
                             <p class="green">${getDeliveryDate("1")}</p>
                             <p class="gray">FREE Shipping</p>
                         </div>
                     </div>
                     <div class="delivery-options">
-                        <input type="radio"data-delivery-option-id="2" name="delivery-date-radio-${matchingProduct.id}"data-product-id="${matchingProduct.id}" ${cartItem.deliveryOptionId === "2" ? "checked" : ""}>
+                        <input type="radio" data-delivery-option-id="2" name="delivery-date-radio-${matchingProduct.id}" data-product-id="${matchingProduct.id}" ${cartItem.deliveryOptionId === "2" ? "checked" : ""}>
                         <div>
                             <p class="green">${getDeliveryDate("2")}</p>
                             <p class="gray">$4.99 - Shipping</p>
                         </div>
                     </div>
                     <div class="delivery-options">
-                        <input type="radio"data-delivery-option-id="3" name="delivery-date-radio-${matchingProduct.id}"data-product-id="${matchingProduct.id}" ${cartItem.deliveryOptionId === "3" ? "checked" : ""}>
+                        <input type="radio" data-delivery-option-id="3" name="delivery-date-radio-${matchingProduct.id}" data-product-id="${matchingProduct.id}" ${cartItem.deliveryOptionId === "3" ? "checked" : ""}>
                         <div>
                             <p class="green">${getDeliveryDate("3")}</p>
                             <p class="gray">$9.99 - Shipping</p>
@@ -82,6 +83,10 @@ function attachEventHandlers() {
   document.querySelectorAll(".save-item-quantity").forEach((btn) => {
     btn.addEventListener("click", (event) => {
       event.preventDefault();
+      console.log(
+        event.target.dataset.productId,
+        Number(event.target.previousElementSibling.value),
+      );
       updateCartItemQuantity(
         event.target.dataset.productId,
         Number(event.target.previousElementSibling.value),
@@ -99,6 +104,8 @@ function attachEventHandlers() {
     });
   });
   document.querySelector(".js-place-order").addEventListener("click", () => {
+    addOrder(orderTotal);
+    removeFromCart();
     window.location.href = "orders.html";
   });
 }

@@ -40,12 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
 export function updateCartItemQuantity(productId, newQuantity) {
   if (newQuantity < 1) return;
   const cartItem = cart.find((item) => item.id === productId);
-  console.log(cartItem);
   cartItem.quantity = newQuantity;
   saveToStorage();
+  updateCartNumber();
 }
-export function removeFromCart(productId) {
-  const cartItemIndex = cart.findIndex((item) => item.id === productId);
-  cart.splice(cartItemIndex, 1);
+export function removeFromCart(productId = 0) {
+  if (productId === 0) {
+    cart.length = 0;
+  } else {
+    const cartItemIndex = cart.findIndex((item) => item.id === productId);
+    cart.splice(cartItemIndex, 1);
+  }
+  updateCartNumber();
   saveToStorage();
 }
