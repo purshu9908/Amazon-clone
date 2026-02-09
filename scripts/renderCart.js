@@ -98,4 +98,7 @@ function attachEventHandlers() {
       renderPaymentSummary();
     });
   });
+  document.querySelector(".js-place-order").addEventListener("click", () => {
+    window.location.href = "orders.html";
+  });
 }
