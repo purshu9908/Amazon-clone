@@ -2,15 +2,63 @@
 <html>
 
 <head>
-  <title>Tracking</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+	<title>Tracking page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles/amazon-header.css">
+	<link rel="stylesheet" href="styles/tracking.css">
 </head>
 
 <body>
-
+	<div class="amazon-header">
+		<div class="section-1">
+			<a href="amazon.html">
+				<img src="images/amazon-logo-white.png" />
+			</a>
+		</div>
+		<div class="section-2">
+			<input type="text" placeholder="Search">
+			<button><img src="images/icons/search-icon.png" alt=""></button>
+		</div>
+		<div class="section-3">
+			<a href="orders.html">
+				<div>Returns</div>
+				<div>& orders</div>
+			</a>
+			<a href="checkout.html">
+				<div class="cart-icon-text">
+					<div class="cart-count js-cart-count"></div>
+					<img src="images/icons/cart-icon.png" alt="">
+					<div>Cart</div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="order-tracking">
+		<div class="view-orders"><a href="orders.html">View all orders</a></div>
+		<div class="order-item-details">
+			<div class="delivery-date">Arriving on Thursday, February 19</div>
+			<div class="order-product-details">
+				<div>Black and Gray Athletic Cotton Socks - 6 Pairs</div>
+				<div>Quantity: 1</div>
+				<div>
+					<img src="images/products/athletic-cotton-socks-6-pairs.jpg" class="order-item-img">
+				</div>
+				<div>
+					<div class="progress-bar-header">
+						<div>Preparing</div>
+						<div>Shipped</div>
+						<div>Delivered</div>
+					</div>
+					<div class="progress-bar-container">
+						<div class="progress-bar-body"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
