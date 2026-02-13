@@ -43,7 +43,7 @@ export function renderOrders() {
                 </button>
             </div>
             <div>
-              <button class="track-package">Track Package</button>
+              <button class="track-package" data-order-id=${order.id} data-product-id=${matchingItem.id}>Track Package</button>
             </div>
           </div>`;
     });
@@ -91,4 +91,10 @@ document.querySelector(".orders-list").addEventListener("click", (event) => {
       messageSpan.innerText = originalText;
     }, 1000);
   }
+});
+document.querySelectorAll(".track-package").forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    const data = event.target.dataset;
+    window.location.href = `tracking.html?orderId=${data.orderId}&productId=${data.productId}`;
+  });
 });
